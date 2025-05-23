@@ -6,9 +6,10 @@
   <title>GOKULPortfolio</title>
   <link rel="stylesheet" href="style.css">
 
-  <!-- Vanta.js and Three.js for animated water background -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+  <!-- jQuery (required for ripples.js) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Ripples.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.min.js"></script>
 
   <style>
     html, body {
@@ -16,17 +17,16 @@
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: white;
-      position: relative;
-      z-index: 1;
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
-    #water-bg {
+    #ripple-bg {
       position: fixed;
-      width: 100%;
-      height: 100vh;
       top: 0;
       left: 0;
+      height: 100vh;
+      width: 100vw;
+      background: #001f3f; /* Deep dark blue */
       z-index: -1;
     }
 
@@ -60,8 +60,8 @@
 </head>
 <body>
 
-  <!-- Water Effect Background -->
-  <div id="water-bg"></div>
+  <!-- Ripple Background -->
+  <div id="ripple-bg"></div>
 
   <header>
     <h1>GOKUL DAKSHINAMURTHY</h1>
@@ -91,23 +91,16 @@
     <p>&copy; 2025 GOKUL</p>
   </footer>
 
-  <!-- Vanta Background Script -->
+  <!-- Activate ripples -->
   <script>
-    VANTA.WAVES({
-      el: "#water-bg",
-      mouseControls: true,
-      touchControls: true,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      scale: 1.00,
-      scaleMobile: 1.00,
-      color: 0x1e90ff, // Deep realistic water blue
-      shininess: 60.00,
-      waveHeight: 30.00,
-      waveSpeed: 1.20,
-      zoom: 0.9
-    })
+    $(document).ready(function () {
+      $('#ripple-bg').ripples({
+        resolution: 512,
+        dropRadius: 20, // Bigger = wider ripple
+        perturbance: 0.03, // Lower = calmer water
+        interactive: true
+      });
+    });
   </script>
 </body>
 </html>
-
